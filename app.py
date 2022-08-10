@@ -17,7 +17,7 @@ DB_USER = environ["DB_USER"]
 DB_DATABASE = DB_USER
 DB_PASSWORD = environ["DB_PASSWORD"]
 DB_CONNECTION_STRING = "host=%s dbname=%s user=%s password=%s" % (DB_HOST, DB_DATABASE, DB_USER, DB_PASSWORD)
-FILENAME = "app.cgi"
+FILENAME = "app.py"
 
 # ==============================================================================
 
