@@ -2,7 +2,6 @@
 
 from flask import Flask
 from flask import render_template, request
-from wsgiref.handlers import CGIHandler
 from os import environ
 
 # PostgreSQL libraries
@@ -378,4 +377,5 @@ def category_sub():
 
 # ==============================================================================
 
-CGIHandler().run(app)
+if __name__ == "__main__":
+    app.run(debug = True, use_reloader = True)
