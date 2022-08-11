@@ -375,6 +375,30 @@ def category_sub():
         cursor.close()
         dbConn.close()
 
+# ================ Dar reset e popular de novo a base de dados =================
+
+# Reset database
+@app.route("/reset_database")
+def reset_database():
+    cursor = None
+    dbConn = None
+    try:
+        dbConn = psycopg2.connect(DB_CONNECTION_STRING)
+        cursor = dbConn.cursor(cursor_factory = psycopg2.extras.DictCursor)
+
+        cursor.execute(open("sql/reset.sql", "r", encoding="utf-8").read())
+        cursor.execute(open("sql/constraint.sql", "r", encoding="utf-8").read())
+        cursor.execute(open("sql/populate.sql", "r", encoding="utf-8").read())
+        
+        return render_template("index.html", FILENAME = FILENAME)
+    except Exception as e:
+        return render_template("error.html", error = str(e), FILENAME = FILENAME)
+    finally:
+        cursor.close()
+        dbConn.commit()
+        dbConn.close()
+
+
 # ==============================================================================
 
 if __name__ == "__main__":
