@@ -101,7 +101,7 @@ CREATE TABLE shelf (
 	name VARCHAR(255) NOT NULL,
 	CONSTRAINT pk_shelf PRIMARY KEY(nro, serial_number, manufacturer),
 	CONSTRAINT fk_shelf_IVM FOREIGN KEY(serial_number, manufacturer) REFERENCES IVM(serial_number, manufacturer),
-	CONSTRAINT fk_shelf_categor FOREIGN KEY(name) REFERENCES category(name)
+	CONSTRAINT fk_shelf_category FOREIGN KEY(name) REFERENCES category(name)
 );
 
 CREATE TABLE planogram (
@@ -119,7 +119,7 @@ CREATE TABLE planogram (
 
 CREATE TABLE retailer (
 	tin INT NOT NULL,
-	name VARCHAR(255) NOT NULL unique,
+	name VARCHAR(255) NOT NULL UNIQUE,
 	CONSTRAINT pk_retailer PRIMARY KEY(tin)
 );
 
