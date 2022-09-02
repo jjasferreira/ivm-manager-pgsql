@@ -6,9 +6,7 @@ IST Databases course's project (LEIC-A 2021/2022). Made by Inês Oliveira, [Joã
 
 ---
 
-## Table of contents
-
-Here is a table of contents:
+### Table of contents
 
 - [General Overview](#general-overview)
 - [Database](#database)
@@ -23,25 +21,40 @@ Here is a table of contents:
 
 ---
 
-### General Overview
+## General Overview
 
-TODO
+- This project foresees the future existence of vending machines connected to each other in a network and having a centralized database system which is extremely customizable and intuitive. These smart machines, enabled by IoT and called IVMs ("_Intelligent Vending Machines_") for the purpose of this project, will soon be managed by supermarket retailers.
+
+- Besides having an unique serial number and its manufacturer assigned, the IVMs are installed at a retail location, which has an address (name, county and district).
+
+- IVMs have shelves. Each shelf has a number that identifies it and also a certain height.
+
+- Retailers are responsible for replenishing specific categories of IVM products and are identified by their identification number and its unique name. Only one retailer is responsible for a certain category of products within an IVM.
+
+- Within the IVMs, products are displayed on the shelves according to a known plan known as the planogram.
+  The planogram determines the shelf, the number of visible fronts and the maximum number of units allowed on the shelf for a certain product.
+
+- Products are identified by a 13-digit numeric barcode known as EAN and have a name. They are organized into categories identified by name. Each product has a main category that must be assigned to it and may optionally belong to more categories.
+
+- There may be categories composed of other categories. That is, the categories may form a hierarchy. The categories made up of subcategories are designated as supercategories. One category can only belong to a maximum of one supercategory. The system must determine, for a supercategory, how many subcategories there are.
+
+- It is necessary to maintain the history of restock events. An event is characterized by the time it occurs and the number of units replaced. The number of replenished units cannot exceed those described in the planogram. All restock events must also keep record of the responsible retailer.
 
 ---
 
-### Database
+## Database
 
-Our relational database, which follows the PostgreSQL system and was previously hosted by a free university server offered to students enrolled in the Databases course, is currently being hosted and maintained by [ElephantSQL](https://github.com/ElephantSQL), since this server was shut down.
+- Our relational database, which follows the PostgreSQL system and was previously hosted by a free university server offered to students enrolled in the Databases course, is currently being hosted and maintained by [ElephantSQL](https://github.com/ElephantSQL), since this server was shut down.
 
-The [`reset.sql`](./sql/reset.sql) file has every command necessary to eliminate the relationships in force on the database server and also creates the necessary tables with the given attributes and keys.
+- The [`reset.sql`](./sql/reset.sql) file has every command necessary to eliminate the relationships in force on the database server and also creates the necessary tables with the given attributes and keys.
 
-The [`constraint.sql`](./sql/constraint.sql) file contains the integrity constraints and triggers needed to ensure that the dependencies are not broken and that any deletion or insertion must follow the rules.
+- The [`constraint.sql`](./sql/constraint.sql) file contains the integrity constraints and triggers needed to ensure that the dependencies are not broken and that any deletion or insertion must follow the rules.
 
-Finally, the [`populate.sql`](./sql/constraint.sql) file is the one responsible for adding useful data to the database, by inserting tuples into the tables in a way that does not violate any constraint. It is the most important one and must not be compromised or lost, because it contains information regarding the company that is potentially private.
+- Finally, the [`populate.sql`](./sql/constraint.sql) file is the one responsible for adding useful data to the database, by inserting tuples into the tables in a way that does not violate any constraint. It is the most important one and must not be compromised or lost, because it contains information regarding the company that is potentially private.
 
 ---
 
-### Integrity Constraints
+## Integrity Constraints
 
 In order for the management system to make sense, to work properly and to ensure that it is coherent and cohesive, we must make use of some restrictions that constraint its logic.
 
@@ -53,7 +66,7 @@ In order for the management system to make sense, to work properly and to ensure
 
 ---
 
-### Web App
+## Web App
 
 This is a web application prototype in Python scripts and HTML pages that allows:
 
@@ -80,7 +93,7 @@ Whenever the user successfully completes an operation, the corresponding method 
 
 On the other hand, if an error is identified in the logic of the [`app.py`](app.py) methods, the [`error.html`](templates/error.html) page is loaded, instead of the intended page, with the text obtained from the bad execution. Additionally, if a HTML page is not able to get the resulting cursors from the queries in the script, the message "_Error: Could not get the data from the database!_" is shown to the user.
 
-#### 1. Insertion and removal of categories and subcategories
+### 1. Insertion and removal of categories and subcategories
 
 - In this first submenu, the "_Table of categories_", which contains all the categories found in the database, is initially displayed. From here, we can remove them or insert subcategories to already existing categories, upgrading them into supercategories, if they are have not yet.
 
@@ -100,7 +113,7 @@ On the other hand, if an error is identified in the logic of the [`app.py`](app.
 > specifies the method to execute from [`app.py`](app.py#L102), which in turn
 > receives the name got from the input as a variable.
 
-#### 2. Insertion and removal of retailers
+### 2. Insertion and removal of retailers
 
 - In this submenu, it is possible to observe the "_Table of retailers_", which corresponds to the default page and which, as you would expect, contains all retailers currently in the database. It is possible to remove all data regarding a certain retailer and its history by pressing the red button that matches it in the table.
 
@@ -116,11 +129,11 @@ On the other hand, if an error is identified in the logic of the [`app.py`](app.
 > values and the name written by the user are stored in variables that are
 > later accessed by the method that is triggered by clicking the submit button.
 
-#### 3. Listing all restock events of IVMs
+### 3. Listing all restock events of IVMs
 
 - This third feature takes us to the "_Table of IVMs_" page, which contains, for each vending machine, the name of its manufacturer, the serial number and an option to consult its restock events. The latter results on the "_IVM Events_" page, which, in addition to displaying the list of all IVM restock events, shows us a table with the number of units replenished by product category.
 
-#### 4. Listing all subcategories of supercategories
+### 4. Listing all subcategories of supercategories
 
 This feature corresponds to the last menu option and only contains the "_Table of super categories_" page, which, as the name implies, displays all the super categories in the database. At the top of the table, we find the categories that have, at the time of consultation, associated subcategories, leaving the remaining ones at the bottom. By clicking on the button that follows each table entry, the "_Table of subcategories_" page is opened.
 
@@ -133,7 +146,7 @@ This feature corresponds to the last menu option and only contains the "_Table o
 
 ---
 
-## Formatting
+# Formatting
 
 In order to keep consistency in this project, we use [`black`](https://github.com/psf/black) as a code formatter for Python files.
 
