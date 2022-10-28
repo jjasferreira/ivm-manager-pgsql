@@ -1,4 +1,4 @@
-# ivm-manager
+# ivm-manager-pgsql
 
 IST Databases course's project (LEIC-A 2021/2022). Made by Inês Oliveira, [João Cardoso](https://github.com/joaoncardoso) and [José João Ferreira](https://github.com/jjasferreira).
 
@@ -152,4 +152,4 @@ In order to keep consistency in this project, we use [`black`](https://github.co
 
 Alternatively, for the Markdown ones, we use [`prettier`](https://github.com/prettier/prettier).
 
-You are allowed and encouraged to try inserting and removing data into the database, since its reversion to the prototype state is easily guaranteed by the RESET button found in the main page, under the fake Copyright notice.
+You are allowed and encouraged to try inserting and removing data into the database, since its reversion to the prototype state is easily guaranteed by the `RESET` button found in the main page, under the fake Copyright notice.
